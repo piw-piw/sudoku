@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sudoku</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    
+    <!--<script src="cell.js"></script>-->
+</head>
+<body>
+    <table>
+        <tr>
+            <td contenteditable="true">6</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">2</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">3</td>
+            <td contenteditable="true"></td>
+        </tr>
+        <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">2</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">7</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">6</td>
+        </tr>
+        <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">7</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">6</td>
+            <td contenteditable="true">3</3td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">5</td>
+            <td contenteditable="true"></td>
+        </tr>
+        <tr>
+            <td contenteditable="true">8</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">2</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">1</td>
+        </tr>
+        <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">1</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">7</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">4</td>
+            <td contenteditable="true"></td>
+        </tr>
+        <tr>
+            <td contenteditable="true">7</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">4</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">8</td>
+        </tr>
+        <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">7</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">8</td>
+            <td contenteditable="true">9</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">4</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+        </tr>
+        <tr>
+            <td contenteditable="true">1</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">8</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+        </tr>
+        <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">4</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">5</td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true">3</td>
+        </tr>
+    </table>
+    <!--(5,1)-->
+    <button onclick="loadSudoku()" id="load">Load</button>
+    <button onclick="su.step()" id="step" disabled>Step</button>
+    <button onclick="su.showDebug()" id="debug" disabled>Debug</button>
+
+    <br>
+    <button onclick="exportSudoku()" id="export" disabled>Export</button>
+    
+    <input type="text" id="import" placeholder="Import">
+    <button onclick="importSudoku()" id="import-btn">Import</button>
+
+    <script src="cell.js"></script>
+    <script src="sudoku.js"></script>
+    <script src='main.js'></script>
+</body>
+</html>
