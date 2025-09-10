@@ -81,3 +81,23 @@ function importSudoku() {
 function exportSudoku() {
     navigator.clipboard.writeText(su.export());
 }
+
+//////////////////
+ Array.from(document.querySelector("table").children[0].children).forEach(row => {
+        Array.from(row.children).forEach((e) => {
+            if (e.children[0]?.nodeName == "INPUT") {
+                e.children[0].addEventListener("input", iN);
+            }
+        });
+    });
+
+
+// evt - event
+function iN(evt) {
+    evt.target.value = evt.data!=0 ? evt.data : "";
+    //evt.preventDefault();
+    document.querySelector("#import").focus()
+    let arr = Array.from(document.querySelectorAll(".sudoku input"));
+    arr[(arr.indexOf(evt.target)+1)%arr.length].focus();
+    //document.querySelectorAll(".sudoku input").
+}

@@ -22,6 +22,9 @@ class Cell {
         let idx = this.possibilities.indexOf(num);
         if (idx < 0) return;
         this.possibilities.splice(idx, 1);
+        if (this.possibilities.length == 1) {
+            this.parent.queue.push(this);
+        }
     }
     // calcPossible(table) {
         

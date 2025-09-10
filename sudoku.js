@@ -1,4 +1,7 @@
 class Sudoku {
+    cells;
+    queue = [];
+
     constructor() {
         this.cells = (() => {
             let grid = [];
@@ -13,7 +16,7 @@ class Sudoku {
     // NOTE unused
     solve() {
         while (!this.isValid()){
-            
+           
         }
         return this.cells;
     }
@@ -28,6 +31,19 @@ class Sudoku {
         })
         this.lookForTheOnlyOnes();
 
+        while (this.queue.length > 0) {
+            let c = this.queue[0];
+            console.log(c)
+            if (c.possibilities.length==1){
+                const val = c.possibilities[0];
+                //console.log("idx:",n,"x:",e.x,"y:",e.y,"val:",val)
+                this.setCellValue(c.x, c.y, val);
+            }
+            this.queue.splice(0,1);
+
+            this.lookForTheOnlyOnes();
+        }
+ 
         this.showDebug();
     }
 
@@ -49,7 +65,7 @@ class Sudoku {
         if ((cell.value==0 || cell.value==undefined)) {
             //console.log("cell is empty");
             return};
-        
+       
         //check vertical
         //console.log("cell x", cell.x)
         for (let x = 0; x < 9; x++) {
@@ -71,7 +87,7 @@ class Sudoku {
             c.removePoss(cell.value);
             //console.log(c);
         }
-        
+       
         //check local square
         // let center = this.getCell(Math.floor(cell.x / 3)*3 + 1, Math.floor(cell.y / 3)*3 + 1)
         let centerX = Math.floor(cell.x / 3)*3 + 1;
@@ -86,7 +102,7 @@ class Sudoku {
         }
 
     }
-    
+   
     lookForTheOnlyOnes() {
         //look for the only place for num in a square
         for (let centerX = 1; centerX < 9; centerX+=3) {
@@ -115,7 +131,7 @@ class Sudoku {
                 }
             }
         }
-        
+       
         //look for the only place for num in a row
         for (let y = 0; y < 9; y++) {
             let showedup_arr = [];
@@ -162,44 +178,74 @@ class Sudoku {
 
 
     // NOTE unused
-    compareFn(a, b) {
-        if (a.posiibilities.length < b.possibilities.length) {
-            return -1;
-        } else if (a.posiibilities.length > b.possibilities.length) {
-            return 1;
-        }
-        // a must be equal to b
-        return 0;
-    }
-    
+   
+   
     // NOTE unused
-    findCandidates() {
-        suCopy = this.cells.slice()
-        suCopy = suCopy.filter((e) => e.collapsed == false)
-        
+    findCandidates(grid) {
+        suCopy = grid.slice()
+        suCopy = suCopy.filter((e) => e.collapsed == false);
+        suCopy.sort((a, b) => {
+            if (a.possibilities.length < b.possibilities.length) {
+                return -1;
+            } else if (a.possibilities.length > b.possibilities.length) {
+                return 1;
+            }
+            // a must be equal to b
+            return 0;
+        });
+
+        return suCopy.filter((e) => e.possibilities.length == suCopy[0].posiiblilities.length);
+       
     }
-    
-    // NOTE unused
-    collapse() {
-        c = this.findCandidates()
-    }
-    
+ 
+   
     // NOTE unused
     isValid() {
         // for (let i = 0; i < 9; i++) {
         //     checkLocal(i)
         // }
-        
+       
         // for (let i = 0; i < 9; i++) {
-        //     checkVertical(i)
+        // //     let sum = 0;
+        //         for
         // }
 
         // for (let i = 0; i < 9; i++) {
         //     checkHorizontal(i)
         // }
-        
+       
     }
-
+    // NOTE unused
+    shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+    }
+    }
+    // NOTE unused
+    generate() {
+        let grid = [];
+        for (let i = 0; i < 81; i++){
+            grid.push(new Cell(this, i%9, Math.floor(i/9), [1,2,3,4,5,6,7,8,9]));
+        }
+ 
+        while (!this.isValid(grid)) {
+            let c = this.findCandidates();
+ 
+            if (c.length == 0){ return this.generate();}
+           
+            c = this.shuffleArray(c);
+ 
+            let sel = c[0];
+            sel.collapsed = true;
+            sel.value = sel.posiiblilities[Math.floor(Math.random() * (sel.possibilities.length))];
+        }
+ 
+        return grid;
+    }
+ 
     showDebug() {
         this.cells.forEach((e)=>{
             if (!e.collapsed) {
@@ -225,7 +271,8 @@ class Sudoku {
         // not ready
         return;
         Array.from(str).forEach((c)=>{
-            
+           
         });
     }
 }
+ 
