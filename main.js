@@ -42,10 +42,12 @@ function loadSudoku() {
     Array.from(document.querySelector("table").children[0].children).forEach(row => {
         let x = 0;
         Array.from(row.children).forEach((e) => {
-            let val = Number(e.innerText);
-            if (!(e.innerText == "" || e.innerText == "\n")) {
+            let val = Number(e.children[0].value);
+            if (val != "") {
                 su.setCellValue(x,y,val);
                 e.innerHTML = "<b>"+val+"</b>";
+            } else {
+                e.innerHTML = "";
             }
             x++;
         });
@@ -65,14 +67,14 @@ function importSudoku() {
     Array.from(document.querySelector("table").children[0].children).forEach(row => {
         Array.from(row.children).forEach((e) => {
             if (str[n]==".") {
-                e.innerText = "";
+                e.children[0].value = "";
             } else {
                 let val = Number(str[n]);
                 if (isNaN(val) || val == 0) {
                     alert("Invalid data.");
                     return;
                 }
-                e.innerText = val;
+                e.children[0].value = val;
             }
             n++;
         });
